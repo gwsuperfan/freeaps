@@ -23,6 +23,9 @@ function generate(pumpsettings_data, bgtargets_data, isf_data, basalprofile_data
         } else {
             return { "error" : 'ISF is expected to be expressed in mg/dL or mmol/L. Found '+isf_data.units};
         }
+        for (var i = 0, len = isf_data.sensitivities.length; i < len; i++) {
+            isf_data.sensitivities[i].sensitivity = 277700/(bg * 55);
+        }
     }
 
     var autotune_data = { };
